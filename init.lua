@@ -143,7 +143,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+-- vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -159,11 +159,14 @@ vim.opt.scrolloff = 10
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
+
+vim.opt.smartindent = true -- syntax aware indentations for newline inserts
+
 -- Changing tab sizes to two spaces
-vim.opt.tabstop = 2
+vim.opt.tabstop = 8
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
-vim.bo.softtabstop = 2
+vim.opt.softtabstop = 2
 
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
@@ -233,7 +236,7 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  -- 'github/copilot.vim', -- GitHub Copilot integration
+  'github/copilot.vim', -- GitHub Copilot integration
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -574,6 +577,7 @@ require('lazy').setup({
         -- clangd = {},
         gopls = {},
         pyright = {},
+        terraformls = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -664,6 +668,9 @@ require('lazy').setup({
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         javascript = { { 'prettierd', 'prettier' } },
+        --
+        -- Yaml formatting can be done with multiple formatters
+        yaml = { 'prettierd', 'prettier' },
       },
     },
   },
